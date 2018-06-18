@@ -78,6 +78,7 @@
     <Compile Include="Klasser\IdColourConvertion.cs" />
     <Compile Include="Klasser\RelayCommand.cs" />
     <Compile Include="Klasser\Repository.cs" />
+    <Compile Include="Klasser\TupleIsh.cs" />
     <Compile Include="Vinduer\AddBistad.xaml.cs">
       <DependentUpon>AddBistad.xaml</DependentUpon>
     </Compile>
@@ -121,6 +122,9 @@
     <Resource Include="Images\next.png" />
     <Resource Include="Images\previous.png" />
     <Resource Include="Images\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\show.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

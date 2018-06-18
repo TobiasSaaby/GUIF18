@@ -10,27 +10,31 @@ namespace GUI_eksamen___Opgave_1
 {
     class Repository
     {
-        static public bool ReadFile(string fileName, out List<Bistad> bistader)
+        static public bool ReadFile(string fileName, out Tuple<List<Bistad>, List<MideTal>> bimider)
         {
-            bistader = new List<Bistad>();
+
+            bimider = Tuple.Create(new List<Bistad>(), new List<MideTal>());
+
             // Create an instance of the XmlSerializer class and specify the type of object to deserialize.
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Bistad>));
+            XmlSerializer serializer = new XmlSerializer(typeof(TupleIsh<List<Bistad>, List<MideTal>>));
 
             TextReader reader = new StreamReader(fileName);
             // Deserialize all the agents.
-            bistader = (List<Bistad>)serializer.Deserialize(reader);
+            bimider = (TupleIsh<List<Bistad>, List<MideTal>>)serializer.Deserialize(reader);
             reader.Close();
 
             return true;
         }
 
-        internal static void SaveFile(string fileName, List<Bistad> bistader)
+        internal static void SaveFile(string fileName, TupleIsh<List<Bistad>, List<MideTal>> bimider)
         {
             // Create an instance of the XmlSerializer class and specify the type of object to serialize.
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Bistad>));
+            XmlSerializer serializer = new XmlSerializer(
+    typeof(TupleIsh<List<Bistad>, List<MideTal>>));
             TextWriter writer = new StreamWriter(fileName);
             // Serialize all the agents.
-            serializer.Serialize(writer, bistader);
+            serializer.Serialize(writer, bimider);
+
             writer.Close();
         }
     }

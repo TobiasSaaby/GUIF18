@@ -78,10 +78,28 @@ namespace GUI_eksamen___Opgave_1
                     MideTal p = o as MideTal;
                     //if (t.Name == "txtId")
                     //    return (p.Id == Convert.ToInt32(filter));
-                    return (p.Tilhorer.Name.StartsWith(filter));
+                    return (p.Tilhorer.Name == filter);
                 };
 
             }
+        }
+
+        private void ShowallClicked(object sender, RoutedEventArgs e)
+        {
+            
+            ICollectionView cv = CollectionViewSource.GetDefaultView(dgridBistader.ItemsSource);
+            var filter = "";
+            cv.Filter = null;
+            
+                cv.Filter = o =>
+                {
+                    MideTal p = o as MideTal;
+                    //if (t.Name == "txtId")
+                    //    return (p.Id == Convert.ToInt32(filter));
+                    return (p.Tilhorer.Name.StartsWith(filter));
+                };
+
+            
         }
 
         private void dgridBistader_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

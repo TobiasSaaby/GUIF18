@@ -8,9 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/add.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/next.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/previous.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/remove.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/show.png")]
 
 

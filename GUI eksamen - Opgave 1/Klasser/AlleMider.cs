@@ -34,221 +34,221 @@ namespace GUI_eksamen___Opgave_1
             }
         }
 
-        #region Generelle Commands
-        ICommand _nextCommand;
-        public ICommand NextCommand
-        {
-            get
-            {
-                return _nextCommand ?? (_nextCommand = new RelayCommand(
-                    () => ++CurrentIndex,
-                    () => CurrentIndex < (Count - 1)));
-            }
-        }
+        //#region Generelle Commands
+        //ICommand _nextCommand;
+        //public ICommand NextCommand
+        //{
+        //    get
+        //    {
+        //        return _nextCommand ?? (_nextCommand = new RelayCommand(
+        //            () => ++CurrentIndex,
+        //            () => CurrentIndex < (Count - 1)));
+        //    }
+        //}
 
-        ICommand _PreviusCommand;
-        public ICommand PreviusCommand
-        {
-            get { return _PreviusCommand ?? (_PreviusCommand = new RelayCommand(PreviusCommandExecute, PreviusCommandCanExecute)); }
-        }
+        //ICommand _PreviusCommand;
+        //public ICommand PreviusCommand
+        //{
+        //    get { return _PreviusCommand ?? (_PreviusCommand = new RelayCommand(PreviusCommandExecute, PreviusCommandCanExecute)); }
+        //}
 
-        private void PreviusCommandExecute()
-        {
-            if (CurrentIndex > 0)
-                --CurrentIndex;
-        }
+        //private void PreviusCommandExecute()
+        //{
+        //    if (CurrentIndex > 0)
+        //        --CurrentIndex;
+        //}
 
-        private bool PreviusCommandCanExecute()
-        {
-            if (CurrentIndex > 0)
-                return true;
-            else
-                return false;
-        }
+        //private bool PreviusCommandCanExecute()
+        //{
+        //    if (CurrentIndex > 0)
+        //        return true;
+        //    else
+        //        return false;
+        //}
 
-        ICommand _SaveAsCommand;
-        public ICommand SaveAsCommand
-        {
-            get { return _SaveAsCommand ?? (_SaveAsCommand = new RelayCommand(SaveAsCommand_Execute)); }
-        }
+        //ICommand _SaveAsCommand;
+        //public ICommand SaveAsCommand
+        //{
+        //    get { return _SaveAsCommand ?? (_SaveAsCommand = new RelayCommand(SaveAsCommand_Execute)); }
+        //}
 
-        private void SaveAsCommand_Execute()
-        {
-            var dialog = new SaveFileDialog();
+        //private void SaveAsCommand_Execute()
+        //{
+        //    var dialog = new SaveFileDialog();
 
-            dialog.Filter = "Bistadsdokument|*.bi|All Files|*.*";
-            dialog.DefaultExt = "bi";
-            if (filePath == "")
-                dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            else
-                dialog.InitialDirectory = Path.GetDirectoryName(filePath);
+        //    dialog.Filter = "Bistadsdokument|*.bi|All Files|*.*";
+        //    dialog.DefaultExt = "bi";
+        //    if (filePath == "")
+        //        dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        //    else
+        //        dialog.InitialDirectory = Path.GetDirectoryName(filePath);
 
-            if (dialog.ShowDialog(App.Current.MainWindow) == true)
-            {
-                filePath = dialog.FileName;
-                filename = Path.GetFileName(filePath);
-                SaveFile();
-                Title = filename + " - " + AppTitle;
-            }
-        }
+        //    if (dialog.ShowDialog(App.Current.MainWindow) == true)
+        //    {
+        //        filePath = dialog.FileName;
+        //        filename = Path.GetFileName(filePath);
+        //        SaveFile();
+        //        Title = filename + " - " + AppTitle;
+        //    }
+        //}
 
-        ICommand _SaveCommand;
-        public ICommand SaveCommand
-        {
-            get { return _SaveCommand ?? (_SaveCommand = new RelayCommand(SaveFileCommand_Execute, SaveFileCommand_CanExecute)); }
-        }
+        //ICommand _SaveCommand;
+        //public ICommand SaveCommand
+        //{
+        //    get { return _SaveCommand ?? (_SaveCommand = new RelayCommand(SaveFileCommand_Execute, SaveFileCommand_CanExecute)); }
+        //}
 
-        private void SaveFileCommand_Execute()
-        {
-            SaveFile();
-        }
+        //private void SaveFileCommand_Execute()
+        //{
+        //    SaveFile();
+        //}
 
-        private void SaveFile()
-        {
-            List<Bistad> tmpBistader;
+        //private void SaveFile()
+        //{
+        //    List<Bistad> tmpBistader;
 
-            try
-            {
-                // Copy the agents to a List. 
-                tmpBistader = this.ToList<Bistad>();
-                Repository.SaveFile(filePath, tmpBistader);
-                dirty = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Unable to save file", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+        //    try
+        //    {
+        //        // Copy the agents to a List. 
+        //        tmpBistader = this.ToList<Bistad>();
+        //        Repository.SaveFile(filePath, tmpBistader);
+        //        dirty = false;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Unable to save file", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //}
 
-        private bool SaveFileCommand_CanExecute()
-        {
-            return (filename != "") && (Count > 0);
-        }
+        //private bool SaveFileCommand_CanExecute()
+        //{
+        //    return (filename != "") && (Count > 0);
+        //}
 
-        ICommand _NewFileCommand;
-        public ICommand NewFileCommand
-        {
-            get { return _NewFileCommand ?? (_NewFileCommand = new RelayCommand(NewFileCommand_Execute)); }
-        }
+        //ICommand _NewFileCommand;
+        //public ICommand NewFileCommand
+        //{
+        //    get { return _NewFileCommand ?? (_NewFileCommand = new RelayCommand(NewFileCommand_Execute)); }
+        //}
 
-        private void NewFileCommand_Execute()
-        {
-            if (dirty)
-            {
-                MessageBoxResult res = MessageBox.Show("Du har data der ikke er gemt! Er du sikker på at du vil lukke uden at gemme?",
-                    "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-                if (res == MessageBoxResult.No)
-                {
-                    return;
-                }
-            }
+        //private void NewFileCommand_Execute()
+        //{
+        //    if (dirty)
+        //    {
+        //        MessageBoxResult res = MessageBox.Show("Du har data der ikke er gemt! Er du sikker på at du vil lukke uden at gemme?",
+        //            "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+        //        if (res == MessageBoxResult.No)
+        //        {
+        //            return;
+        //        }
+        //    }
 
-            Clear();
-            filename = "";
-            Title = "Untitled - " + AppTitle;
-            dirty = false;
-        }
+        //    Clear();
+        //    filename = "";
+        //    Title = "Untitled - " + AppTitle;
+        //    dirty = false;
+        //}
 
 
-        ICommand _OpenFileCommand;
-        public ICommand OpenFileCommand
-        {
-            get { return _OpenFileCommand ?? (_OpenFileCommand = new RelayCommand<string>(OpenFileCommand_Execute)); }
-        }
+        //ICommand _OpenFileCommand;
+        //public ICommand OpenFileCommand
+        //{
+        //    get { return _OpenFileCommand ?? (_OpenFileCommand = new RelayCommand<string>(OpenFileCommand_Execute)); }
+        //}
 
-        private void OpenFileCommand_Execute(string argFilename)
-        {
-            List<Bistad> tmpBistader;
-            var dialog = new OpenFileDialog();
+        //private void OpenFileCommand_Execute(string argFilename)
+        //{
+        //    List<Bistad> tmpBistader;
+        //    var dialog = new OpenFileDialog();
 
-            if (dirty)
-            {
-                MessageBoxResult res = MessageBox.Show("Du har data der ikke er gemt! Er du sikker på at du vil lukke uden at gemme?",
-                    "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-                if (res == MessageBoxResult.No)
-                {
-                    return;
-                }
-            }
+        //    if (dirty)
+        //    {
+        //        MessageBoxResult res = MessageBox.Show("Du har data der ikke er gemt! Er du sikker på at du vil lukke uden at gemme?",
+        //            "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+        //        if (res == MessageBoxResult.No)
+        //        {
+        //            return;
+        //        }
+        //    }
 
-            dialog.Filter = "Bistadsdokument|*.bi|All Files|*.*";
-            dialog.DefaultExt = "bi";
-            if (filePath == "")
-                dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            else
-                dialog.InitialDirectory = Path.GetDirectoryName(filePath);
+        //    dialog.Filter = "Bistadsdokument|*.bi|All Files|*.*";
+        //    dialog.DefaultExt = "bi";
+        //    if (filePath == "")
+        //        dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        //    else
+        //        dialog.InitialDirectory = Path.GetDirectoryName(filePath);
 
-            if (dialog.ShowDialog(App.Current.MainWindow) == true)
-            {
-                filePath = dialog.FileName;
-                filename = Path.GetFileName(filePath);
-                try
-                {
-                    Repository.ReadFile(filePath, out tmpBistader);
+        //    if (dialog.ShowDialog(App.Current.MainWindow) == true)
+        //    {
+        //        filePath = dialog.FileName;
+        //        filename = Path.GetFileName(filePath);
+        //        try
+        //        {
+        //            Repository.ReadFile(filePath, out tmpBistader);
 
-                    // We have to insert the agents in the existing collection. 
-                    Clear();
-                    foreach (var bistad in tmpBistader)
-                        Add(bistad);
-                    Title = filename + " - " + AppTitle;
-                    dirty = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Kan ikke åbne filen!", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
+        //            // We have to insert the agents in the existing collection. 
+        //            Clear();
+        //            foreach (var bistad in tmpBistader)
+        //                Add(bistad);
+        //            Title = filename + " - " + AppTitle;
+        //            dirty = false;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message, "Kan ikke åbne filen!", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        }
+        //    }
+        //}
 
-        ICommand _CloseAppCommand;
-        public ICommand CloseAppCommand
-        {
-            get { return _CloseAppCommand ?? (_CloseAppCommand = new RelayCommand(CloseCommand_Execute)); }
-        }
+        //ICommand _CloseAppCommand;
+        //public ICommand CloseAppCommand
+        //{
+        //    get { return _CloseAppCommand ?? (_CloseAppCommand = new RelayCommand(CloseCommand_Execute)); }
+        //}
 
-        private void CloseCommand_Execute()
-        {
-            bool regret = false;
+        //private void CloseCommand_Execute()
+        //{
+        //    bool regret = false;
 
-            if (dirty)
-            {
-                MessageBoxResult res = MessageBox.Show("Du har data der ikke er gemt! Er du sikker på at du vil lukke uden at gemme?",
-                    "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-                if (res == MessageBoxResult.No)
-                {
-                    regret = true;
-                }
-            }
-            if (!regret)
-                Application.Current.MainWindow.Close();
-        }
+        //    if (dirty)
+        //    {
+        //        MessageBoxResult res = MessageBox.Show("Du har data der ikke er gemt! Er du sikker på at du vil lukke uden at gemme?",
+        //            "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+        //        if (res == MessageBoxResult.No)
+        //        {
+        //            regret = true;
+        //        }
+        //    }
+        //    if (!regret)
+        //        Application.Current.MainWindow.Close();
+        //}
 
-        ICommand _ColorCommand;
-        public ICommand ColorCommand
-        {
-            get { return _ColorCommand ?? (_ColorCommand = new RelayCommand<String>(ColorCommand_Execute)); }
-        }
+        //ICommand _ColorCommand;
+        //public ICommand ColorCommand
+        //{
+        //    get { return _ColorCommand ?? (_ColorCommand = new RelayCommand<String>(ColorCommand_Execute)); }
+        //}
 
-        private void ColorCommand_Execute(String colorStr)
-        {
-            SolidColorBrush newBrush = SystemColors.WindowBrush; // Default color
+        //private void ColorCommand_Execute(String colorStr)
+        //{
+        //    SolidColorBrush newBrush = SystemColors.WindowBrush; // Default color
 
-            try
-            {
-                if (colorStr != null)
-                {
-                    if (colorStr != "Default")
-                        newBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(colorStr));
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Unknown color name, default color is used", "Program error!");
-            }
+        //    try
+        //    {
+        //        if (colorStr != null)
+        //        {
+        //            if (colorStr != "Default")
+        //                newBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(colorStr));
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        MessageBox.Show("Unknown color name, default color is used", "Program error!");
+        //    }
 
-            Application.Current.MainWindow.Resources["BackgroundBrush"] = newBrush;
-        }
-        #endregion // Commands
+        //    Application.Current.MainWindow.Resources["BackgroundBrush"] = newBrush;
+        //}
+        //#endregion // Commands
 
         #region Mide Commands
 
