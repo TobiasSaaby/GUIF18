@@ -1,59 +1,112 @@
 ﻿<Window x:Class="GUI_eksamen___Opgave_1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_eksamen___Opgave_1"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{Binding Path=Title}" 
+        Height="400" Width="800">
+    <Window.Resources>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="Bisque"/>
+        <SolidColorBrush x:Key="ForegroundBrush" Color="Blue"/>
+        <local:IdColourConvertion x:Key="IdToColorConverter" />
+
+        <!--Label style-->
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Width" Value="92" />
+        </Style>
+
+        <!--BottonToolbarStyle-->
+        <Style x:Key="BottonToolbarStyle" TargetType="{x:Type Button}" >
+            <Style.Setters>
+                <Setter Property="Width" Value="32" />
+                <Setter Property="Foreground" Value="DarkBlue" />
+                <Setter Property="FontWeight" Value="ExtraBold" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontFamily" Value="Arial" />
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect" >
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="2" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <DataTemplate x:Key="BistadTemplate">
+            <WrapPanel>
+                <TextBlock Text="{Binding Path=Bistaderne.Name}" Padding="5, 0" 
+                           Width="50" 
+                           Foreground="{Binding Path=Bistaderne.Name, Converter={StaticResource IdToColorConverter}}"
+                           />
+
+            </WrapPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <local:AltIAlt x:Name="altialt"/>
+    </Window.DataContext>
+
     <DockPanel Name="dockPanelMain">
         <Menu DockPanel.Dock="Top" Name="mainMenu">
             <MenuItem Header="_File" >
-                <MenuItem Header="_New" Command="{Binding NewFileCommand}"/>
-                <MenuItem Header="_Open" Command="{Binding OpenFileCommand}" />
-                <MenuItem Header="_Save" Command="{Binding SaveCommand}" />
-                <MenuItem Header="Save _As" Command="{Binding SaveAsCommand}" />
-                <MenuItem Header="E_xit" Command="{Binding CloseAppCommand}"/>
+                <MenuItem Header="_New" Command="{Binding Bistaderne.NewFileCommand}"/>
+                <MenuItem Header="_Open" Command="{Binding Bistaderne.OpenFileCommand}" />
+                <MenuItem Header="_Save" Command="{Binding Bistaderne.SaveCommand}" />
+                <MenuItem Header="Save _As" Command="{Binding Bistaderne.SaveAsCommand}" />
+                <MenuItem Header="E_xit" Command="{Binding Bistaderne.CloseAppCommand}"/>
             </MenuItem>
             <MenuItem Header="_Bistader">
-                <MenuItem Header="_Previous" Command="{Binding PreviusCommand}"/>
-                <MenuItem Header="_Next" Command="{Binding NextCommand}"/>
-                <MenuItem Header="_Add new" Command="{Binding AddCommand}"/>
-                <MenuItem Header="_Edit" Command="{Binding EditCommand}"/>
-                <MenuItem Header="_Delete" Command="{Binding DeleteCommand}"/>
+                <MenuItem Header="_Previous" Command="{Binding Bistaderne.PreviusCommand}"/>
+                <MenuItem Header="_Next" Command="{Binding Bistaderne.NextCommand}"/>
+                <MenuItem Header="_Add new" Command="{Binding Bistaderne.AddCommand}"/>
+                <MenuItem Header="_Edit" Command="{Binding Bistaderne.EditCommand}"/>
+                <MenuItem Header="_Delete" Command="{Binding Bistaderne.DeleteCommand}"/>
+            </MenuItem>
+            <MenuItem Header="_Miderapporter">
+                <MenuItem Header="_Previous" Command="{Binding Miderne.PreviusCommand}"/>
+                <MenuItem Header="_Next" Command="{Binding Miderne.NextCommand}"/>
+                <MenuItem Header="_Add new" Command="{Binding Miderne.AddCommand}"/>
+                <MenuItem Header="_Edit" Command="{Binding Miderne.EditCommand}"/>
+                <MenuItem Header="_Delete" Command="{Binding Miderne.DeleteCommand}"/>
             </MenuItem>
             <MenuItem Header="_Stil">
-                <MenuItem Header="_Default" Command="{Binding ColorCommand}" CommandParameter="Default" />
-                <MenuItem Header="_Bisque" Command="{Binding ColorCommand}" CommandParameter="Bisque" />
-                <MenuItem Header="Light_Green" Command="{Binding ColorCommand}" CommandParameter="LightGreen"/>
-                <MenuItem Header="_LightBlue" Command="{Binding ColorCommand}" CommandParameter="LightBlue"/>
-                <MenuItem Header="Ghost_White" Command="{Binding ColorCommand}" CommandParameter="GhostWhite"/>
+                <MenuItem Header="_Default" Command="{Binding Bistaderne.ColorCommand}" CommandParameter="Default" />
+                <MenuItem Header="_Bisque" Command="{Binding Bistaderne.ColorCommand}" CommandParameter="Bisque" />
+                <MenuItem Header="Light_Green" Command="{Binding Bistaderne.ColorCommand}" CommandParameter="LightGreen"/>
+                <MenuItem Header="_LightBlue" Command="{Binding Bistaderne.ColorCommand}" CommandParameter="LightBlue"/>
+                <MenuItem Header="Ghost_White" Command="{Binding Bistaderne.ColorCommand}" CommandParameter="GhostWhite"/>
             </MenuItem>
         </Menu>
         <ToolBar DockPanel.Dock="Top" Height="auto"
                  FontSize="20" FontWeight="Bold"
                  Background="AliceBlue">
 
-            <Button ToolTip="Move to previous agent"
-                    Command="{Binding PreviusCommand}"
+            <Button ToolTip="gå til forrige bistad"
+                    Command="{Binding Bistaderne.PreviusCommand}"
                     Style="{StaticResource ResourceKey=BottonToolbarStyle}">
-                <Image Source="images/previus.bmp" Stretch="Uniform" />
+                <Image Source="../Images/previous.png" Stretch="Uniform" />
             </Button>
-            <Button ToolTip="Move to next agent"
-                    Command="{Binding Path=NextCommand}"
+            <Button ToolTip="Gå til naeste bistad"
+                    Command="{Binding Bistaderne.NextCommand}"
                     Style="{StaticResource ResourceKey=BottonToolbarStyle}">
-                <Image Source="images/next.bmp" />
+                <Image Source="../Images/next.png" Stretch="Uniform" />
             </Button>
 
-            <Button ToolTip="Add a new agent"
-                    Command="{Binding AddCommand}"
+            <Button ToolTip="Tilfoj ny bistad"
+                    Command="{Binding Bistaderne.AddCommand}"
                     Style="{StaticResource ResourceKey=BottonToolbarStyle}">
-                <Image Source="images/Add.gif" Stretch="Uniform" />
+                <Image Source="../Images/add.png" Stretch="Uniform" />
             </Button>
-            <Button ToolTip="Delete selected agent"
-                    Command="{Binding DeleteCommand}"
+            <Button ToolTip="Slet valgte bistad"
+                    Command="{Binding Bistaderne.DeleteCommand}"
                     Style="{StaticResource ResourceKey=BottonToolbarStyle}">
-                <Image Source="images/trashcan.jpg" Stretch="Uniform" />
+                <Image Source="../Images/remove.png" Stretch="Uniform" />
             </Button>
 
             <Separator Width="auto" Margin="5,0"/>
@@ -67,57 +120,83 @@
                       SelectionChanged="sortOrderCombo_SelectionChanged"
                       >
                 <ComboBoxItem Tag="None">None</ComboBoxItem>
-                <ComboBoxItem Tag="Navn_ACS">Navn ACS</ComboBoxItem>
-                <ComboBoxItem Tag="Navn_DESC">Navn DESC</ComboBoxItem>
+                <ComboBoxItem Tag="Navn_Acs">Navn Acs</ComboBoxItem>
+                <ComboBoxItem Tag="Navn_Decs">Navn Decs</ComboBoxItem>
             </ComboBox>
         </ToolBar>
         <StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Background="AliceBlue">
-            <StatusBarItem Content="Agents Count:" />
-            <StatusBarItem Name="sbiAgentsCount" Width="40"
-                           Content="{Binding Path=Count}" />
+            <StatusBarItem Content="Bistad antal:" />
+            <StatusBarItem Name="sbiBistadAntal" Width="40"
+                           Content="{Binding Path=Bistaderne.Count}" />
             <StatusBarItem Name="sbiDateTime" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal" Name="spClock">
-                    <TextBlock Margin="4,0" Name="tblkDate" Text="{Binding Path=Date}" />
-                    <TextBlock Margin="4,0" Name="tblkTime" Text="{Binding Path=Time}" />
+                    <TextBlock Margin="4,0" Name="tblkDate" Text="{Binding Path=Bistaderne.Date}" />
+                    <TextBlock Margin="4,0" Name="tblkTime" Text="{Binding Path=Bistaderne.Time}" />
                 </StackPanel>
             </StatusBarItem>
         </StatusBar>
 
-        <Grid Name="agentGrid" Background="{DynamicResource ResourceKey=BackgroundBrush}">
+        <Grid Name="BistadGrid" Background="{DynamicResource ResourceKey=BackgroundBrush}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="115*"></ColumnDefinition>
+                <ColumnDefinition Width="111*"/>
                 <ColumnDefinition Width="5"></ColumnDefinition>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="563*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Height="28" Margin="0,8,0,0" Name="label1" VerticalAlignment="Top" HorizontalAlignment="Left" >Navn</Label>
-            
-            <TextBox Margin="100,10,0,310" 
-                     Name="tbxId" 
-                     HorizontalAlignment="Left" 
-                     Width="58"
-                     Text="{Binding Path=ID}"
-                     Style="{StaticResource JamesStyle}"
-                     IsReadOnly="True"
+            <Label Height="28" Margin="10,9,0,0" Name="label1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="57"  >Bikube:</Label>
+            <TextBox Margin="72,10,10,0" 
+                     Name="tbxName" 
+                     Text="{Binding Path=Bistaderne.Name}"
+                     Style="{StaticResource JamesStyle}" Grid.ColumnSpan="2"
                      />
-           
-            <GridSplitter Grid.Column="1"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Stretch"
-                          Width="5"
-                          />
-            <DataGrid  ItemsSource="{Binding }" 
+            <DataGrid  ItemsSource="{Binding Bistaderne}" 
+                       AutoGenerateColumns="False"
                        IsSynchronizedWithCurrentItem="True"
-                       SelectedIndex="{Binding Path=CurrentIndex}"
-                       SelectedItem="{Binding Path=CurrentAgent}"
-                       Name="dgridAgents" 
-                       Grid.Column="2" 
-                       Margin="9"  
+                       SelectedIndex="{Binding Path=Bistaderne.CurrentIndex}"
+                       SelectedItem="{Binding Path=CurrentBistad}"
+                       Name="dgridBistad" 
+                       Margin="10,42,10,10"  
                        CanUserAddRows="False" 
                        CanUserDeleteRows="False" 
                        IsReadOnly="True"
                        MinRowHeight="12" 
-                       MouseLeftButtonDown="dgridAgents_MouseLeftButtonDown"
-                       />
+                       MouseLeftButtonDown="dgridBistad_MouseLeftButtonDown" Grid.ColumnSpan="2" >
+                <DataGrid.Columns>
+                <DataGridTextColumn Header="Navn" Binding="{Binding Name}"/>
+                    </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+
+            <GridSplitter Grid.Column="2"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch"
+                          Width="4" Margin="0.4,0"
+                          />
+            <DataGrid  ItemsSource="{Binding Miderne}" 
+                       AutoGenerateColumns="False"
+                       IsSynchronizedWithCurrentItem="True"
+                       SelectedIndex="{Binding Path=Miderne.CurrentIndex}"
+                       SelectedItem="{Binding Path=Miderne.CurrentMider}"
+                       Name="dgridBistader" 
+                       Grid.Column="3" 
+                       Margin="8.6,9"  
+                       CanUserAddRows="False" 
+                       CanUserDeleteRows="False" 
+                       IsReadOnly="True"
+                       MinRowHeight="12" 
+                       MouseLeftButtonDown="dgridBistader_MouseLeftButtonDown" 
+                       >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tilhører" Binding="{Binding Tilhorer.Name}"/>
+                    <DataGridTextColumn Header="Dato" Binding="{Binding Dato}"/>
+                    <DataGridTextColumn Header="Antal" Binding="{Binding Antal}"/>
+                    <DataGridTextColumn Header="Kommentar" Binding="{Binding Kommentar}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </DockPanel>
 </Window>

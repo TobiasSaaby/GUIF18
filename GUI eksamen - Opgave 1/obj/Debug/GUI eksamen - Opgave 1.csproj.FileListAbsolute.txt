@@ -1,15 +1,21 @@
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\GUI eksamen - Opgave 1.csprojAssemblyReference.cache
-C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\MainWindow.g.cs
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\App.g.cs
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\GUI eksamen - Opgave 1_MarkupCompile.cache
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\GUI eksamen - Opgave 1_MarkupCompile.lref
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\bin\Debug\GUI eksamen - Opgave 1.exe.config
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\bin\Debug\GUI eksamen - Opgave 1.exe
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\bin\Debug\GUI eksamen - Opgave 1.pdb
-C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\MainWindow.baml
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\GUI eksamen - Opgave 1.g.resources
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\GUI_eksamen___Opgave_1.Properties.Resources.resources
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\GUI eksamen - Opgave 1.csproj.GenerateResource.cache
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\GUI eksamen - Opgave 1.csproj.CoreCompileInputs.cache
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\GUI eksamen - Opgave 1.exe
 C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\GUI eksamen - Opgave 1.pdb
+C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\Vinduer\AddBistad.g.cs
+C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\Vinduer\MainWindow.g.cs
+C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\Vinduer\AddBistad.baml
+C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\Vinduer\MainWindow.baml
+C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\App.baml
+C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\Vinduer\AddMide.g.cs
+C:\Users\jensk\Desktop\GUIF18\GUI eksamen - Opgave 1\obj\Debug\Vinduer\AddMide.baml

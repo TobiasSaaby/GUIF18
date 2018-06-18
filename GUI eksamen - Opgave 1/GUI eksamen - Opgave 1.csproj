@@ -58,6 +58,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vinduer\AddMide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vinduer\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,10 +70,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Klasser\AlleMider.cs" />
+    <Compile Include="Klasser\AltIAlt.cs" />
+    <Compile Include="Klasser\Bistad.cs" />
     <Compile Include="Klasser\Bistader.cs" />
+    <Compile Include="Klasser\Clock.cs" />
+    <Compile Include="Klasser\IdColourConvertion.cs" />
     <Compile Include="Klasser\RelayCommand.cs" />
+    <Compile Include="Klasser\Repository.cs" />
     <Compile Include="Vinduer\AddBistad.xaml.cs">
       <DependentUpon>AddBistad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vinduer\AddMide.xaml.cs">
+      <DependentUpon>AddMide.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vinduer\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -104,7 +117,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\next.png" />
+    <Resource Include="Images\previous.png" />
+    <Resource Include="Images\remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

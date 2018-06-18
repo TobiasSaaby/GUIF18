@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace GUI_eksamen___Opgave_1.Vinduer
+namespace GUI_eksamen___Opgave_1
 {
     /// <summary>
     /// Interaction logic for AddBistad.xaml
@@ -22,6 +22,10 @@ namespace GUI_eksamen___Opgave_1.Vinduer
         public AddBistad()
         {
             InitializeComponent();
+        }
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
     }
 }

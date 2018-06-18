@@ -1,22 +1,38 @@
-﻿<Window x:Class="GUI_eksamen___Opgave_1.Vinduer.AddBistad"
+﻿<Window x:Class="GUI_eksamen___Opgave_1.AddBistad"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GUI_eksamen___Opgave_1.Vinduer"
+        xmlns:local="clr-namespace:GUI_eksamen___Opgave_1"
         mc:Ignorable="d"
-        Title="AddBistad" Height="127.557" Width="255.268">
+        Title="AddBistad" Height="144.656" Width="274.81">
+
+    <Window.Resources>
+
+
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Width" Value="92" />
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Label Margin="0,8,0,0">Navn</Label>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="101*"/>
+            <ColumnDefinition Width="146*"/>
+        </Grid.ColumnDefinitions>
+        <Label Margin="0,8,0,0" Grid.ColumnSpan="2">Navn</Label>
 
         <TextBox Height="25" Margin="60,8,0,0" Name="tbxId" TabIndex="0"
-                 VerticalAlignment="Top" HorizontalAlignment="Left" Width="177" MaxLength="3" 
-                 Text="{Binding Path=ID}"
+                 VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"
+                 Text="{Binding Path=Name}" Grid.ColumnSpan="2"
                  />
 
         <Button IsDefault="True" 
                 TabIndex="4"
-                Margin="10,0,149,10"
+                Margin="10,0,0,10"
                 Name="btnOk" 
                 VerticalAlignment="Bottom" 
                 Click="btnOk_Click">_Ok</Button>
@@ -26,7 +42,7 @@
                 Name="btnCancel" 
                 HorizontalAlignment="Right" 
                 Width="76" 
-                VerticalAlignment="Bottom">_Cancel</Button>
+                VerticalAlignment="Bottom" Grid.Column="1">_Cancel</Button>
 
     </Grid>
 </Window>
