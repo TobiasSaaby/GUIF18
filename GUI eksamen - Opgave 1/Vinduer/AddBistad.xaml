@@ -1,0 +1,32 @@
+﻿<Window x:Class="GUI_eksamen___Opgave_1.Vinduer.AddBistad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_eksamen___Opgave_1.Vinduer"
+        mc:Ignorable="d"
+        Title="AddBistad" Height="127.557" Width="255.268">
+    <Grid>
+        <Label Margin="0,8,0,0">Navn</Label>
+
+        <TextBox Height="25" Margin="60,8,0,0" Name="tbxId" TabIndex="0"
+                 VerticalAlignment="Top" HorizontalAlignment="Left" Width="177" MaxLength="3" 
+                 Text="{Binding Path=ID}"
+                 />
+
+        <Button IsDefault="True" 
+                TabIndex="4"
+                Margin="10,0,149,10"
+                Name="btnOk" 
+                VerticalAlignment="Bottom" 
+                Click="btnOk_Click">_Ok</Button>
+        <Button IsCancel="True" 
+                TabIndex="5"
+                Margin="0,0,10,10" 
+                Name="btnCancel" 
+                HorizontalAlignment="Right" 
+                Width="76" 
+                VerticalAlignment="Bottom">_Cancel</Button>
+
+    </Grid>
+</Window>
